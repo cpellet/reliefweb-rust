@@ -2,7 +2,9 @@
 name = "reliefweb"
 authors = ["Cyrus Pellet <cyrus.pellet@gmail.com>"]
 description = "A Rust client for the ReliefWeb API"
-documentation = "https://docs.rs/reliefweb-rust"
+documentation = "https://docs.rs/reliefweb"
+repository = "https://github.com/cpellet/reliefweb-rust"
+homepage = "https://github.com/cpellet/reliefweb-rust"
 license = "MIT"
 version = "0.1.0"
 edition = "2024"
