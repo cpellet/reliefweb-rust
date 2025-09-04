@@ -32,9 +32,7 @@ Add to your `Cargo.toml`:
 ```toml
 [dependencies]
 reliefweb-rust = "0.1.0"
-tokio = { version = "1", features = ["full"] }
-serde = { version = "1.0", features = ["derive"] }
-reqwest = { version = "0.12", features = ["json"] }
+tokio = { version = "1.47.1", features = ["full"] }
 ```
 
 ## Usage

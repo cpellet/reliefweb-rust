@@ -1,6 +1,6 @@
 //! # ReliefWeb Rust Client
 //!
-//! This crate provides an unofficial strongly-typed Rust client for OCHA's [ReliefWeb API](https://apidoc.reliefweb.int/).
+//! This crate provides an unofficial strongly-typed Rust client for [OCHA](https://www.unocha.org/)'s [ReliefWeb API](https://apidoc.reliefweb.int/).
 //!
 //! It supports listing and getting various resources (`reports`, `disasters`, `countries`, `jobs`, etc.) with typed queries, filtering, field selection, and more.
 //!
@@ -11,7 +11,7 @@
 //!
 //! #[tokio::main]
 //! async fn main() {
-//!     let client = Client::new(RELIEFWEB_DOMAIN, "my_descriprive_app_name", APIVersion::V2).unwrap();
+//!     let client = Client::new(RELIEFWEB_DOMAIN, "my_descriptive_app_name", APIVersion::V2).unwrap();
 //!     
 //!     let reports = client.reports()
 //!         .list(Some(&QueryParams::new().limit(5)))

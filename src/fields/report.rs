@@ -14,7 +14,7 @@ use crate::{
 pub type ReportsEndpoint<'c> = ResourceEndpoint<'c, ReportFields>;
 
 /// Represents the fields of a report record returned by the ReliefWeb API.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ReportFields {
     /// Unique identifier of the report.
     pub id: Option<i64>,

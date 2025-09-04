@@ -46,12 +46,21 @@ impl fmt::Display for QueryPreset {
     }
 }
 
+#[derive(Default)]
 /// Specifies how to interpret spaces in queries. Can be AND or OR. Default value is OR.
-#[derive(strum_macros::Display, Default)]
 pub enum FilterOperator {
     #[default]
     OR,
     AND,
+}
+
+impl fmt::Display for FilterOperator {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            FilterOperator::AND => write!(f, "AND"),
+            FilterOperator::OR => write!(f, "OR"),
+        }
+    }
 }
 
 /// Specifies a full-text filter for the query

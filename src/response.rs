@@ -1,4 +1,4 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 /// Represents a paginated API response from the ReliefWeb API.
 ///
@@ -23,7 +23,7 @@ use serde::Deserialize;
 /// let resp: ApiResponse<Value> = serde_json::from_str(json).unwrap();
 /// assert_eq!(resp.data[0].fields["title"], "Report 1");
 /// ```
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ApiResponse<T> {
     /// The URL of this resource.
     pub href: Option<String>,
@@ -41,7 +41,7 @@ pub struct ApiResponse<T> {
 }
 
 /// Represents pagination and related links for an API response.
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Links {
     /// Link to the current page of results.
     #[serde(rename = "self")]
@@ -53,7 +53,7 @@ pub struct Links {
 }
 
 /// Represents a URL link returned by the API.
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct HrefLink {
     /// The full URL of the link.
     pub href: String,
@@ -62,7 +62,7 @@ pub struct HrefLink {
 /// Represents an individual item in the API response.
 ///
 /// `T` is the type of the `fields` returned by this resource.
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ApiItem<T> {
     /// The unique identifier for this item.
     pub id: String,

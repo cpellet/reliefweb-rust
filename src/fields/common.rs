@@ -1,4 +1,4 @@
-//! # Common Fields
+//! # Shared Endpoint Fields
 //!
 //! This module defines shared structures used across multiple ReliefWeb endpoints,
 //! such as countries, locations, document dates, descriptors, languages, and sources.
@@ -8,7 +8,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Represents a country associated with a record.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Country {
     /// Link to the API resource for this country.
     pub href: Option<String>,
@@ -27,7 +27,7 @@ pub struct Country {
 }
 
 /// Represents a geographical location with latitude and longitude.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Location {
     /// Latitude coordinate.
     pub lat: Option<f64>,
@@ -36,7 +36,7 @@ pub struct Location {
 }
 
 /// Represents various dates associated with a document or record.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct DocumentDates {
     /// Closing date of the document (if applicable).
     pub closing: Option<String>,
@@ -49,7 +49,7 @@ pub struct DocumentDates {
 }
 
 /// Represents a generic descriptor, used for types like source types.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Descriptor {
     /// The unique identifier of the descriptor.
     pub id: Option<i64>,
@@ -58,7 +58,7 @@ pub struct Descriptor {
 }
 
 /// Represents a language associated with a record.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Language {
     /// The unique identifier of the language.
     pub id: Option<i64>,
@@ -69,7 +69,7 @@ pub struct Language {
 }
 
 /// Represents a source (organization or entity) related to a record.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Source {
     /// Link to the API resource for this source.
     pub href: Option<String>,
