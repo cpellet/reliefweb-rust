@@ -67,7 +67,7 @@ pub struct ApiItem<T> {
     /// The unique identifier for this item.
     pub id: String,
     /// The relevance or score of this item (may be `None`).
-    pub score: Option<u32>,
+    pub score: Option<f64>,
     /// The main fields of the item.
     pub fields: T,
     /// Optional URL to this item’s API resource.

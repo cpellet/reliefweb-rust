@@ -93,7 +93,7 @@ impl Client {
     ///     .await
     ///     .unwrap();
     /// ```
-    pub fn reports(&self) -> ReportsEndpoint {
+    pub fn reports(&'_ self) -> ReportsEndpoint<'_> {
         ReportsEndpoint::new(self, "reports")
     }
 
@@ -110,7 +110,7 @@ impl Client {
     ///     .await
     ///     .unwrap();
     /// ```
-    pub fn disasters(&self) -> DisastersEndpoint {
+    pub fn disasters(&'_ self) -> DisastersEndpoint<'_> {
         DisastersEndpoint::new(self, "disasters")
     }
 
@@ -127,7 +127,7 @@ impl Client {
     ///     .await
     ///     .unwrap();
     /// ```
-    pub fn countries(&self) -> CountriesEndpoint {
+    pub fn countries(&'_ self) -> CountriesEndpoint<'_> {
         CountriesEndpoint::new(self, "countries")
     }
 
@@ -144,7 +144,7 @@ impl Client {
     ///     .await
     ///     .unwrap();
     /// ```
-    pub fn jobs(&self) -> JobsEndpoint {
+    pub fn jobs(&'_ self) -> JobsEndpoint<'_> {
         JobsEndpoint::new(self, "jobs")
     }
 
@@ -161,7 +161,7 @@ impl Client {
     ///     .await
     ///     .unwrap();
     /// ```
-    pub fn training(&self) -> TrainingsEndpoint {
+    pub fn training(&'_ self) -> TrainingsEndpoint<'_> {
         TrainingsEndpoint::new(self, "training")
     }
 
@@ -178,7 +178,7 @@ impl Client {
     ///     .await
     ///     .unwrap();
     /// ```
-    pub fn sources(&self) -> SourcesEndpoint {
+    pub fn sources(&'_ self) -> SourcesEndpoint<'_> {
         SourcesEndpoint::new(self, "sources")
     }
 
@@ -195,7 +195,7 @@ impl Client {
     ///     .await
     ///     .unwrap();
     /// ```
-    pub fn blog(&self) -> BlogsEndpoint {
+    pub fn blog(&'_ self) -> BlogsEndpoint<'_> {
         BlogsEndpoint::new(self, "blog")
     }
 
@@ -212,7 +212,7 @@ impl Client {
     ///     .await
     ///     .unwrap();
     /// ```
-    pub fn book(&self) -> BooksEndpoint {
+    pub fn book(&'_ self) -> BooksEndpoint<'_> {
         BooksEndpoint::new(self, "book")
     }
 

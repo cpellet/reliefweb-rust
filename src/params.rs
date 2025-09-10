@@ -46,7 +46,7 @@ impl fmt::Display for QueryPreset {
     }
 }
 
-#[derive(Default)]
+#[derive(Default, Debug, PartialEq)]
 /// Specifies how to interpret spaces in queries. Can be AND or OR. Default value is OR.
 pub enum FilterOperator {
     #[default]
@@ -64,6 +64,7 @@ impl fmt::Display for FilterOperator {
 }
 
 /// Specifies a full-text filter for the query
+#[derive(Default, Debug, PartialEq)]
 pub struct QueryQuery {
     /// What to search for. Required for all queries.
     pub value: String,
@@ -125,7 +126,7 @@ pub struct SortDescriptor {
 #[derive(Default)]
 pub struct QueryParams {
     /// Free-text search in given fields.
-    pub query: Vec<QueryQuery>,
+    pub query: Option<QueryQuery>,
     /// Narrows down content to be searched in. Corresponds to the 'refine' section in the web UI.
     pub filter: Vec<QueryFilter>,
     ///A helper for creating correct API calls, setting verbose=1 adds a details section to the response to display the query parameters as a JSON object.
@@ -159,12 +160,7 @@ impl QueryParams {
     }
 
     pub fn query(mut self, query: QueryQuery) -> Self {
-        self.query.push(query);
-        self
-    }
-
-    pub fn queries(mut self, queries: Vec<QueryQuery>) -> Self {
-        self.query.extend(queries);
+        self.query = Some(query);
         self
     }
 
@@ -247,14 +243,13 @@ impl QueryParams {
             qp.append_pair("fields[exclude][]", exc);
         }
 
-        for (i, q) in self.query.iter().enumerate() {
-            let prefix = format!("query[{i}]");
-            qp.append_pair(&format!("{prefix}[value]"), &q.value);
-            for (j, field) in q.fields.iter().enumerate() {
-                qp.append_pair(&format!("{prefix}[fields][{j}]"), field);
+        if let Some(query) = &self.query {
+            qp.append_pair(&format!("query[value]"), &query.value);
+            for (j, field) in query.fields.iter().enumerate() {
+                qp.append_pair(&format!("query[fields][{j}]"), field);
             }
-            if let Some(op) = &q.operator {
-                qp.append_pair(&format!("{prefix}[operator]"), &op.to_string());
+            if let Some(op) = &query.operator {
+                qp.append_pair(&format!("query[operator]"), &op.to_string());
             }
         }
 
@@ -328,7 +323,7 @@ mod tests {
         assert_eq!(qp.preset.unwrap().to_string(), "analysis");
         assert_eq!(qp.include, vec!["field1", "field2"]);
         assert_eq!(qp.exclude, vec!["field3"]);
-        assert_eq!(qp.query.len(), 1);
+        assert_eq!(qp.query, None);
         assert_eq!(qp.filter.len(), 1);
         assert_eq!(qp.sort.len(), 1);
     }
