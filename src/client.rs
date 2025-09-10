@@ -304,15 +304,15 @@ mod tests {
         );
         assert_eq!(
             pairs.next(),
-            Some((Cow::Borrowed("query[0][value]"), Cow::Borrowed("bar")))
+            Some((Cow::Borrowed("query[value]"), Cow::Borrowed("bar")))
         );
         assert_eq!(
             pairs.next(),
-            Some((Cow::Borrowed("query[0][fields][0]"), Cow::Borrowed("foo")))
+            Some((Cow::Borrowed("query[fields][0]"), Cow::Borrowed("foo")))
         );
         assert_eq!(
             pairs.next(),
-            Some((Cow::Borrowed("query[0][operator]"), Cow::Borrowed("AND")))
+            Some((Cow::Borrowed("query[operator]"), Cow::Borrowed("AND")))
         );
         assert_eq!(pairs.next(), None);
     }

@@ -323,7 +323,14 @@ mod tests {
         assert_eq!(qp.preset.unwrap().to_string(), "analysis");
         assert_eq!(qp.include, vec!["field1", "field2"]);
         assert_eq!(qp.exclude, vec!["field3"]);
-        assert_eq!(qp.query, None);
+        assert_eq!(
+            qp.query,
+            Some(QueryQuery {
+                value: "search".to_string(),
+                fields: vec!["title".to_string()],
+                operator: Some(FilterOperator::AND)
+            })
+        );
         assert_eq!(qp.filter.len(), 1);
         assert_eq!(qp.sort.len(), 1);
     }
@@ -371,10 +378,10 @@ mod tests {
         qp.apply_to_url(&mut url);
 
         let query: Vec<(_, _)> = url.query_pairs().collect();
-        assert!(query.contains(&("query[0][value]".into(), "foo".into())));
-        assert!(query.contains(&("query[0][fields][0]".into(), "title".into())));
-        assert!(query.contains(&("query[0][fields][1]".into(), "content".into())));
-        assert!(query.contains(&("query[0][operator]".into(), "AND".into())));
+        assert!(query.contains(&("query[value]".into(), "foo".into())));
+        assert!(query.contains(&("query[fields][0]".into(), "title".into())));
+        assert!(query.contains(&("query[fields][1]".into(), "content".into())));
+        assert!(query.contains(&("query[operator]".into(), "AND".into())));
     }
 
     #[test]
